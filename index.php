@@ -1,4 +1,5 @@
 <?php session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,14 @@
             
         </header>
         <div class="content">
-            <h3 style="margin:0 0 0 20px;">Hello custommer</h3> <a href="login.php">Log In</a> or <a href="reg.php">Register</a>
+        <?php include('app/loginAction.php') ?>
+        <?php if(isset($_COOKIE['remember_name'])){ echo "<p class='welcome'>Welcome, <b>".$_SESSION['username']."</b></p><br>"; } ?> 
+        <?php if(isset($_COOKIE['remember_name']) || $_SESSION['loginStatus'] == 1) {?>
+            <a href='logout.php' class="button-action">Logout</a>
+        <?php } else { ?>
+            <a href='login.php' class="button-action">Login</a>
+        <?php } ?> 
+        <a href="reg.php" class="button-action">Register</a>
         </div>
         <footer>
 

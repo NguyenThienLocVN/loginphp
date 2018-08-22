@@ -19,9 +19,9 @@
             <h1 style="margin:0;padding: 20px;">PLEASE LOGIN FORM BELOW</h1>
             <?php include 'app/loginAction.php'; ?>
             <form action='' method='post'>
-                <input type='text' name='username' class="username"  placeholder="Username" value="<?php if(isset($_COOKIE['member_name'])){ echo $_COOKIE['member_name']; }  ?>" /><br />
-                <input type='password' name='password' class="password" placeholder="Password" value="<?php if(isset($_COOKIE['member_pass'])){ echo $_COOKIE['member_pass']; } ?>" /><br />
-                <input type="checkbox" name="remember" class="remember" <?php if(isset($_COOKIE["member_login"])) { ?> checked <?php } ?> > Remember me <br>
+                <input type='text' name='username' class="username"  placeholder="Username" value="<?php if(isset($_COOKIE['remember_name'])){ echo $_COOKIE['remember_name']; }  ?>" /><br />
+                <input type='password' name='password' class="password" placeholder="Password" value="<?php if(isset($_COOKIE['remember_pass'])){ echo $_COOKIE['remember_pass']; } ?>" /><br />
+                <input type="checkbox" name="remember" class="remember" <?php if(isset($_COOKIE["remember"])) { ?> checked <?php } ?> > Remember me <br>
                 <input type="submit" class="btn-login" name='ok' value='Log In' />
                 
                 <p style="color:red;"> <?php echo $_SESSION['error'] ?> </p>

@@ -1,36 +1,19 @@
 <?php session_start();
 if(isset($_POST['ok']))
 {
-  $u = $_POST['username'];
-  $p = $_POST['password'];
   $_SESSION['error'] = "";
- if($u == '' || $p == '')
+  $token = sha1($_POST['username']);
+ if($_POST['username'] == '' || $_POST['password'] == '')
  {
   $_SESSION['error'] = "Please enter username or password<br>";
  }
-
- if($u && $p)
+ else
  {
+  $u=$_POST['username'];
+  $p=$_POST['password'];  
+
   include('config/db.php');
   $qr=mysqli_query($conn, "select * from users where username='".$u."' and password='".$p."'") or die ("Loi truy van");
-  
-
-  if(isset($_POST['remember']))
-  {
-    setcookie("member_name", $u, time()+(3600));
-    setcookie("member_pass", $p, time()+(3600));
-  }
-  else
-  {
-    if(isset($_COOKIE['member_name']))
-    {
-      setcookie("member_name","");
-    }
-    if(isset($_COOKIE['member_pass']))
-    {
-      setcookie("member_pass","");
-    }
-  }
   
   if(mysqli_num_rows($qr) == 0)
   {
@@ -38,16 +21,30 @@ if(isset($_POST['ok']))
   }
   else
   {
-    $_SESSION['login'] = 1;
-    $_SESSION['user'] = $u;
-    if($_SESSION['user'] == 'admin')
+    $_SESSION['loginStatus'] = 1;
+
+    $row = mysqli_fetch_array($qr);
+    $_SESSION['username'] = $row['username'];
+    $_SESSION['password'] = $row['password'];
+    if(isset($_POST['remember']))
     {
-      header('location:role/admin.php');
+      $_SESSION['remember'] = true;
+      setcookie("remember", $_SESSION['remember'], time()+(3600));
+      setcookie("remember_name", $_SESSION['username'], time()+(3600));
     }
-    if($_SESSION['user'] == 'user')
+    else
     {
-      header('location:role/user.php');
+      if(isset($_COOKIE['member_name']))
+      {
+        setcookie("member_name","");
+      }
+      if(isset($_COOKIE['member_pass']))
+      {
+        setcookie("member_pass","");
+      }
     }
+    
+    header('location: index.php');
   }
  }
 }
