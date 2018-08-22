@@ -16,26 +16,22 @@
             <a href="index.php" class="back">Back</a>
         </header>
         <div class="content">
-            <h1 style="margin:0;padding: 20px;">REGISTER</h1>
-            <?php include 'app/loginAction.php'; ?>
+            <h1>REGISTER</h1>
+            <?php include 'app/regAction.php'; ?>
             <form action='' method='post'>
-                <input type="text" name="reg_user" placeholder="Username">
-                <input type="text" name="reg_pass" placeholder="Password">
-                <input type="text" name="reg_pass_2" placeholder="Retype Password">
-                <input type="number" name="reg_phone" placeholder="Phone">
-                <input type="submit" class="btn-login" name='ok' value='Log In' />
+                <input type="text" name="reg_user" placeholder="Username" class="input-form">
+                <input type="password" name="reg_pass" placeholder="Password" class="input-form">
+                <input type="password" name="reg_pass_2" placeholder="Retype Password" class="input-form">
+                <input type="number" name="reg_phone" placeholder="Phone" class="input-form">
+                <input type="submit" class="btn-login" name='register' value='Register' />
                 
-                <p style="color:red;"> <?php echo $_SESSION['error'] ?> </p>
+                <?php /* echo "<pre>"; var_dump($registerName) */ ?>
+                
             </form>
-            <?php 
-            // if(isset($_POST['ok'])){
-            //     $db = new MyDB();
-            //     $db->login();
-            //     }
-                ?>
+            <p style="color:red;"> <?php echo $_SESSION['error']; ?> </p>
         </div>
         <footer>
-            user: admin | pass:adminpass
+
         </footer>
     </div>
 </body>

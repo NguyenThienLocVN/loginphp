@@ -6,6 +6,10 @@ body{
     margin: 0;
     padding: 0;
 }
+h1{
+    margin:0;
+    padding-top: 20px;
+}
 
 header{
     width: 100%;
@@ -58,14 +62,14 @@ footer{
 }
 
 /* input username & password */
-.username, .password {
-    margin-top: 20px;
+.username, .password, .input-form {
+    margin-top: 15px;
     border: none;
     height: 25px;
     border-radius: 5px;
     box-shadow: 2px 2px gray;
 }
-.username:focus, .password:focus {
+.username:focus, .password:focus, .input-form:focus {
     background-color: lightpink; 
 }
 
@@ -76,4 +80,7 @@ footer{
     padding: 10px;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
+    color:#fff;
+    margin-top: 10px;
 }

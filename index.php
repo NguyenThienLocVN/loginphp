@@ -1,5 +1,4 @@
 <?php session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -17,14 +16,15 @@
             
         </header>
         <div class="content">
-        <?php include('app/loginAction.php') ?>
-        <?php if(isset($_COOKIE['remember_name'])){ echo "<p class='welcome'>Welcome, <b>".$_SESSION['username']."</b></p><br>"; } ?> 
-        <?php if(isset($_COOKIE['remember_name']) || $_SESSION['loginStatus'] == 1) {?>
+        <?php if(isset($_SESSION['username'])){ echo "<p class='welcome'>Welcome, <b>".$_SESSION['username']."</b></p><br>"; } ?> 
+        <?php if(isset($_COOKIE['remember_name']) && !isset($_SESSION['username'])) { echo "<p class='welcome'>Welcome, <b>".$_COOKIE['remember_name']."</b></p><br>"; } ?> 
+        <?php if(isset($_COOKIE['remember_name']) || isset($_SESSION['username'])) {?>
             <a href='logout.php' class="button-action">Logout</a>
-        <?php } else { ?>
+        <?php } else if ($_COOKIE['remember_name'] = "" || empty($_SESSION['username'])) { ?>
             <a href='login.php' class="button-action">Login</a>
+            <a href="reg.php" class="button-action">Register</a>
         <?php } ?> 
-        <a href="reg.php" class="button-action">Register</a>
+        
         </div>
         <footer>
 

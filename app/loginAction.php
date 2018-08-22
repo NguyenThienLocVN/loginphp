@@ -2,7 +2,6 @@
 if(isset($_POST['ok']))
 {
   $_SESSION['error'] = "";
-  $token = sha1($_POST['username']);
  if($_POST['username'] == '' || $_POST['password'] == '')
  {
   $_SESSION['error'] = "Please enter username or password<br>";
@@ -27,10 +26,9 @@ if(isset($_POST['ok']))
     $_SESSION['username'] = $row['username'];
     $_SESSION['password'] = $row['password'];
     if(isset($_POST['remember']))
-    {
-      $_SESSION['remember'] = true;
-      setcookie("remember", $_SESSION['remember'], time()+(3600));
-      setcookie("remember_name", $_SESSION['username'], time()+(3600));
+    { 
+      setcookie("remember", $_SESSION['remember'], time()+(86400));
+      setcookie("remember_name", $_POST['username'], time()+(86400));
     }
     else
     {
