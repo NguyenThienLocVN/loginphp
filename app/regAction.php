@@ -40,6 +40,8 @@
             mysqli_query($conn, $query);
             $_SESSION['username'] = $registerName;
             $_SESSION['success'] = "Success";
+
+            // var_dump($query);
         }
     }
 

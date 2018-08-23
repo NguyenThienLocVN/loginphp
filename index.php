@@ -16,21 +16,19 @@
             
         </header>
         <div class="content">
-        <?php if($_SESSION['loginStatus'] == 1) { ?>
-                <?php echo "<p class='welcome'>Welcome, <b>".$_SESSION['username']."</b></p><br>"; ?>
-                <a href='logout.php' class="button-action">Logout</a>    
-        <?php } else if (isset($_COOKIE['token'])) { ?>
-            <a href='logout.php' class="button-action">Logout</a>
-        <?php } else if (!isset($_COOKIE['token'])) { ?>
-            <a href='login.php' class="button-action">Login</a>
-            <a href="reg.php" class="button-action">Register</a>
-        <?php } ?>
+            <?php if($_SESSION['loginStatus'] == 1) {?>
+                <?php echo 'Welcome, <b>'.$_SESSION['username'].'</b>'; ?>
+                <a href="logout.php" class="button-action">Logout</a>
+                <a href="reg.php" class="button-action">Register</a>
+            <?php } else if(isset($_COOKIE['token'])) { ?>
+               <?php echo 'You are login as <b>'.$_COOKIE['remember_name']. '</b>. Click <a href="home.php">Continue</a> to comfirm' ?>
+            <?php } else { ?>
+                <a href="login.php" class="button-action">Login</a>
+                <a href="reg.php" class="button-action">Register</a>
+            <?php } ?>
 
 
-            
-
-            <?php /* var_dump($_COOKIE['token']) */ ?>
-        
+            <?php /* var_dump(isset($_COOKIE['token'])) */ ?>
         </div>
         <footer>
 

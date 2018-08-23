@@ -33,7 +33,7 @@
 
         </div>
         <footer>
-            user: admin | pass:adminpass
+            user: begin | pass:123456
         </footer>
     </div>
 </body>
