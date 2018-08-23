@@ -2,7 +2,8 @@
     session_start();
 
 
-
+    if(isset($_POST['register']))
+    {
 
     $registerName = $_POST['reg_user'];
     $registerPass = $_POST['reg_pass'];
@@ -10,12 +11,11 @@
     $registerPhone = $_POST['reg_phone'];
 
 
-    foreach($_POST as $key=>$value) {
-        if(empty($_POST[$key])) {
-        $_SESSION['error'] = "All fields are required";
-        break;
-        }
+    if(empty($registerName) || empty($registerPass) || empty($registerPass2) || empty($registerPhone))
+    {
+        $_SESSION['error'] = 'All fields are required'; 
     }
+
     if($registerPass != $registerPass2){ 
         $_SESSION['error'] = 'Passwords should be same<br>'; 
     }
@@ -30,7 +30,7 @@
 
     if($user)
     {
-        if($registerName == $user['username'])
+        if($user['username'] == $registerName )
         {
             $_SESSION['error'] = "Username already exists";
         }
@@ -40,13 +40,14 @@
         }
     }
     
-    else if(isset($_POST['register']) || empty($_SESSION['error']) )
+
+    else if(!isset($_SESSION['error']))
     {
         include('config/db.php');
         $query=mysqli_query($conn, "insert into users (username,password,phone) values ('".$registerName."','".$registerPass."','".$registerPhone."')");
-        
-    $_SESSION['error'] = 'Register success';
 
+        $_SESSION['error'] = "Register success";
     }
-    
+
+}
 ?>

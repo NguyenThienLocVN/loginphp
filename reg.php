@@ -25,7 +25,7 @@
                 <input type="number" name="reg_phone" placeholder="Phone" class="input-form">
                 <input type="submit" class="btn-login" name='register' value='Register' />
                 
-                <?php /* echo "<pre>"; var_dump($registerName) */ ?>
+                <?php /* echo "<pre>"; var_dump($query) */ ?>
                 
             </form>
             <p style="color:red;"> <?php echo $_SESSION['error']; ?> </p>
