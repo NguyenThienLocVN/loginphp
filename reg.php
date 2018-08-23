@@ -22,13 +22,13 @@
                 <input type="text" name="reg_user" placeholder="Username" class="input-form">
                 <input type="password" name="reg_pass" placeholder="Password" class="input-form">
                 <input type="password" name="reg_pass_2" placeholder="Retype Password" class="input-form">
-                <input type="number" name="reg_phone" placeholder="Phone" class="input-form">
-                <input type="submit" class="btn-login" name='register' value='Register' />
+                <input type="number" name="reg_phone" placeholder="Phone" class="input-form" max-length="11">
+                <input type="submit" class="btn-login" name="register" value='Register' />
                 
-                <?php /* echo "<pre>"; var_dump($query) */ ?>
                 
             </form>
-            <p style="color:red;"> <?php echo $_SESSION['error']; ?> </p>
+            <p style="color:red;"> <?php  echo $_SESSION['success']; ?> </p>
+            <?php include('error.php'); ?>
         </div>
         <footer>
 

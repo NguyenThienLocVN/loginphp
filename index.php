@@ -16,14 +16,20 @@
             
         </header>
         <div class="content">
-        <?php if(isset($_SESSION['username'])){ echo "<p class='welcome'>Welcome, <b>".$_SESSION['username']."</b></p><br>"; } ?> 
-        <?php if(isset($_COOKIE['remember_name']) && !isset($_SESSION['username'])) { echo "<p class='welcome'>Welcome, <b>".$_COOKIE['remember_name']."</b></p><br>"; } ?> 
-        <?php if(isset($_COOKIE['remember_name']) || isset($_SESSION['username'])) {?>
+        <?php if($_SESSION['loginStatus'] == 1) { ?>
+                <?php echo "<p class='welcome'>Welcome, <b>".$_SESSION['username']."</b></p><br>"; ?>
+                <a href='logout.php' class="button-action">Logout</a>    
+        <?php } else if (isset($_COOKIE['token'])) { ?>
             <a href='logout.php' class="button-action">Logout</a>
-        <?php } else if ($_COOKIE['remember_name'] = "" || empty($_SESSION['username'])) { ?>
+        <?php } else if (!isset($_COOKIE['token'])) { ?>
             <a href='login.php' class="button-action">Login</a>
             <a href="reg.php" class="button-action">Register</a>
-        <?php } ?> 
+        <?php } ?>
+
+
+            
+
+            <?php /* var_dump($_COOKIE['token']) */ ?>
         
         </div>
         <footer>

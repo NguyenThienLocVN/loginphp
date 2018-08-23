@@ -21,10 +21,12 @@
             <form action='' method='post'>
                 <input type='text' name='username' class="username"  placeholder="Username" value="" /><br />
                 <input type='password' name='password' class="password" placeholder="Password" value="" /><br />
+                <input type="hidden" name="secret" value="<?php echo $token; ?>">
                 <input type="checkbox" name="remember" class="remember" <?php if(isset($_COOKIE["remember"])) { ?> checked <?php } ?> > Remember me <br>
-                <input type="submit" class="btn-login" name='ok' value='Log In' />
+                <input type="submit" class="btn-login" name='submit' value='Log In' />
                 
             </form>
+            <?php /* var_dump($qrToken); */ ?>
 
             <p style="color:red;"> <?php  echo $_SESSION['error']; ?> </p>
 

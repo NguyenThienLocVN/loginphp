@@ -1,5 +1,6 @@
 <?php session_start();
-if(isset($_POST['ok']))
+
+if(isset($_POST['submit']) && $_SESSION['token'] == $_POST['secret'])
 {
   $_SESSION['error'] = "";
  if($_POST['username'] == '' || $_POST['password'] == '')
@@ -9,7 +10,7 @@ if(isset($_POST['ok']))
  else
  {
   $u=$_POST['username'];
-  $p=$_POST['password'];  
+  $p=md5($_POST['password']);  
 
   include('config/db.php');
   $qr=mysqli_query($conn, "select * from users where username='".$u."' and password='".$p."'") or die ("Loi truy van");
@@ -21,14 +22,18 @@ if(isset($_POST['ok']))
   else
   {
     $_SESSION['loginStatus'] = 1;
+    
 
     $row = mysqli_fetch_array($qr);
     $_SESSION['username'] = $row['username'];
     $_SESSION['password'] = $row['password'];
+    
+
     if(isset($_POST['remember']))
     { 
       setcookie("remember", $_SESSION['remember'], time()+(86400));
       setcookie("remember_name", $_POST['username'], time()+(86400));
+      setcookie("token", $_SESSION['token'], time()+(86400));
     }
     else
     {
@@ -46,4 +51,7 @@ if(isset($_POST['ok']))
   }
  }
 }
+
+$token = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$_SESSION['token'] = $token;
 ?>

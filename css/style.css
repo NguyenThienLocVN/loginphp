@@ -22,6 +22,7 @@ form{
     width: 200px;
     margin: auto;
 }
+.error{color:red;}
 .welcome, .back{
     margin: 0;
     padding: 5px 0 0 50px;
