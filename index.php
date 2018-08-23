@@ -21,7 +21,8 @@
                 <a href="logout.php" class="button-action">Logout</a>
                 <a href="reg.php" class="button-action">Register</a>
             <?php } else if(isset($_COOKIE['token'])) { ?>
-               <?php echo 'You are login as <b>'.$_COOKIE['remember_name']. '</b>. Click <a href="home.php">Continue</a> to comfirm' ?>
+               <?php echo 'You are login as <b>'.$_COOKIE['remember_name']. '</b>.' ?>
+            Click <a href="<?php if(!isset($_SESSION['username'])){ ?> login.php <?php } ?>">Continue</a> to comfirm.
             <?php } else { ?>
                 <a href="login.php" class="button-action">Login</a>
                 <a href="reg.php" class="button-action">Register</a>

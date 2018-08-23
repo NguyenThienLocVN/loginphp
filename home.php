@@ -18,7 +18,12 @@
             
         </header>
         <div class="content">
-                <a href="logout.php" class="button-action">Logout</a>
+            <?php if(!isset($_SESSION['username'])){ ?>
+                <h1>You must login to see data</h1>
+                <a href="login.php" class="button-action">Login</a>
+            <?php } else { ?>
+                Data
+            <?php } ?>
         </div>
         <footer>
 
