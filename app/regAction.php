@@ -41,7 +41,7 @@
             $_SESSION['username'] = $registerName;
             $_SESSION['success'] = "Success";
 
-            // var_dump($query);
+            var_dump($query);
         }
     }
 

@@ -1,4 +1,12 @@
 <?php session_start();
+
+    include('config/db.php');
+    $t = $_COOKIE['token'];
+    $qr = mysqli_query($conn, "select * from users where token='$t'") or die('loi truy van');
+    $rs = mysqli_fetch_array($qr);
+
+    // var_dump($_SESSION['loginStatus']);
+
 ?>
 
 <!DOCTYPE html>
@@ -16,20 +24,21 @@
             
         </header>
         <div class="content">
-            <?php if($_SESSION['loginStatus'] == 1) {?>
-                <?php echo 'Welcome, <b>'.$_SESSION['username'].'</b>'; ?>
-                <a href="logout.php" class="button-action">Logout</a>
-                <a href="reg.php" class="button-action">Register</a>
-            <?php } else if(isset($_COOKIE['token'])) { ?>
-               <?php echo 'You are login as <b>'.$_COOKIE['remember_name']. '</b>.' ?>
-            Click <a href="<?php if(!isset($_SESSION['username'])){ ?> login.php <?php } ?>">Continue</a> to comfirm.
-            <?php } else { ?>
-                <a href="login.php" class="button-action">Login</a>
-                <a href="reg.php" class="button-action">Register</a>
-            <?php } ?>
+            <?php if($_SESSION['loginStatus'] == "done") {
+                echo 'Welcome, <b>'.$_SESSION['username'].'</b>';
+                echo '<a href="logout.php" class="button-action">Logout</a>';
+                echo '<a href="home.php" class="button-action">Home</a>';
+            } else if(isset($_COOKIE['remember_name']) ) {
+               echo "You are login as <b>".$_COOKIE['remember_name']."</b>.";
+               echo "Click <a href='home.php'>Continue</a> to comfirm.";
+            } else if( is_null($_COOKIE['remember_name']) || is_null($_COOKIE['remember_name']) ) { 
+                echo '<a href="login.php" class="button-action">Login</a>';
+                echo '<a href="reg.php" class="button-action">Register</a>';
+            }
+            ?>
 
 
-            <?php /* var_dump(isset($_COOKIE['token'])) */ ?>
+            <?php /* var_dump($rs['token']) */ ?>
         </div>
         <footer>
 
